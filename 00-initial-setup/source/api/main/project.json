@@ -1,7 +1,7 @@
 {
-  "name": "dsc-mnrn-demo",
-  "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/dsc-mnrn-demo/src",
+  "name": "main",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "source/api/main/src",
   "projectType": "application",
   "tags": [],
   "targets": {
@@ -9,34 +9,28 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "webpack-cli build",
-        "args": [
-          "node-env=production"
-        ]
+        "args": ["node-env=production"]
       },
       "configurations": {
         "development": {
-          "args": [
-            "node-env=development"
-          ]
+          "args": ["node-env=development"]
         }
       }
     },
     "serve": {
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
-      "dependsOn": [
-        "build"
-      ],
+      "dependsOn": ["build"],
       "options": {
-        "buildTarget": "dsc-mnrn-demo:build",
+        "buildTarget": "main:build",
         "runBuildTargetDependencies": false
       },
       "configurations": {
         "development": {
-          "buildTarget": "dsc-mnrn-demo:build:development"
+          "buildTarget": "main:build:development"
         },
         "production": {
-          "buildTarget": "dsc-mnrn-demo:build:production"
+          "buildTarget": "main:build:production"
         }
       }
     },
@@ -46,10 +40,8 @@
       }
     },
     "docker-build": {
-      "dependsOn": [
-        "build"
-      ],
-      "command": "docker build -f apps/dsc-mnrn-demo/Dockerfile . -t dsc-mnrn-demo"
+      "dependsOn": ["build"],
+      "command": "docker build -f source/api/main/Dockerfile . -t dsc-mnrn-demo"
     }
   }
 }
