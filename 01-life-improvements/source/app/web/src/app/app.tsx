@@ -1,6 +1,5 @@
-import { Route, Routes, Link, BrowserRouter } from 'react-router-dom';
 // Uncomment this line to use CSS modules
-// import styles from './app.module.scss';
+// import styles from './app.module.scss'
 
 export function App() {
   return (
@@ -10,7 +9,7 @@ export function App() {
         Welcome web 👋
       </h1>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
