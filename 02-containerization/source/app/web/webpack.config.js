@@ -5,7 +5,7 @@ const { NxAppWebpackPlugin } = require('@nx/webpack/app-plugin')
 
 module.exports = {
   output: {
-    path: join(__dirname, '../../../dist/source/app/web'),
+    path: join(__dirname, '../../../dist/app/web'),
   },
   devServer: {
     port: 4200,

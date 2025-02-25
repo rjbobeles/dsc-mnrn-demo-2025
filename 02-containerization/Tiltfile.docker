@@ -1,0 +1,17 @@
+docker_compose(
+  configPaths="./docker/docker-compose-core.yml",
+  env_file=".env",
+  project_name="dsc-demo",
+  wait=True
+)
+dc_resource('mongodb', labels=['core'])
+
+docker_compose(
+    configPaths="./docker/docker-compose-services.yml",
+    env_file=".env",
+    project_name="dsc-demo",
+    wait=True
+)
+
+dc_resource('main', labels=['services'])
+dc_resource('web', labels=['services'])
