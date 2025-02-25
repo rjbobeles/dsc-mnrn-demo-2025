@@ -9,8 +9,8 @@ export default [
   ...nx.configs['flat/javascript'],
   {
     plugins: {
-      import: eslintPluginImport,
       prettier: prettierPlugin,
+      import: eslintPluginImport,
     },
   },
   prettierConfig,
