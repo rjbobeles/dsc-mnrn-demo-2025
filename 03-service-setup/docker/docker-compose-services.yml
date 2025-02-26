@@ -1,0 +1,32 @@
+---
+services:
+  # --------------
+  # Main API
+  # --------------
+  main:
+    build:
+      context: ../
+      dockerfile: docker/DockerFile.api_main
+    container_name: api
+    environment:
+      # Service
+      - NAME=${API_GATEWAY_NAME:-main-api}
+      - PRODUCTION_FEATURES=${API_GATEWAY_PRODUCTION_FEATURES:-true}
+      - ENVIRONMENT_NAME=${API_GATEWAY_ENVIRONMENT_NAME:-development}
+    depends_on:
+      - mongodb
+    ports:
+      - 4000:4000
+
+  # --------------
+  # Web APP
+  # --------------
+  web:
+    build:
+      context: ../
+      dockerfile: docker/DockerFile.app_web
+    container_name: app
+    depends_on:
+      - main
+    ports:
+      - 4200:80

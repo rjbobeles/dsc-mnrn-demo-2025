@@ -1,0 +1,21 @@
+---
+services:
+  # --------------
+  # Database
+  # --------------
+  mongodb:
+    hostname: mongodb
+    image: mongodb/mongodb-atlas-local
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+    volumes:
+      - mongodb_data:/data/db
+      - mongodb_config:/data/configdb
+
+volumes:
+  mongodb_data:
+    driver: local
+  mongodb_config:
+    driver: local

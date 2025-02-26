@@ -1,0 +1,40 @@
+load('ext://dotenv', 'dotenv')
+dotenv()
+
+# Run core services
+docker_compose(
+  configPaths="./docker/docker-compose-core.yml",
+  env_file=".env",
+  project_name="dsc-demo",
+  wait=True
+)
+dc_resource('mongodb', labels=['core'])
+
+# Setup
+local_resource(
+  name = "Yarn Install",
+  cmd = "yarn install",
+  labels=['setup'],
+  allow_parallel=True,
+)
+
+# Run Services
+environment = {}
+
+local_resource(
+  name="main",
+  serve_cmd="yarn nx run main:serve --configuration=development",
+  allow_parallel=True,
+  serve_env={},
+  labels=['services'],
+  resource_deps=['mongodb', 'Yarn Install']
+)
+
+local_resource(
+  name="web",
+  serve_cmd="yarn nx run web:serve",
+  allow_parallel=True,
+  serve_env={},
+  labels=['services'],
+  resource_deps=['Yarn Install', 'main']
+)
