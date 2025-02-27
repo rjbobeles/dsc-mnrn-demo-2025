@@ -112,6 +112,9 @@ To Run:
 ### 03-service-setup
 This step sets up the services to have a workable directory. This includes installation of necessary packages.
 
+### 03-authentication
+This step creates the authentication module and related endpoints such as session management, password management, and authentication endpoints
+
 ## Contributing
 How to contribute...
 
