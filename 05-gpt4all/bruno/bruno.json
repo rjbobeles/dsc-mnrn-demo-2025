@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "DSC Demo",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}
