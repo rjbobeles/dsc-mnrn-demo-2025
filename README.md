@@ -7,6 +7,7 @@
 - [Steps](#steps)
   - [Initial Setup](#00-initial-setup)
   - [Life Improvements](#01-life-improvements)
+  - [Service Setup](#03-service-setup)
 - [Features](#features)
 - [Contributing](#contributing)
 - [License](#license)
@@ -37,7 +38,8 @@ This repo contains a collection of folders that step-by-step guides you in creat
 ### 00-initial-setup
 This step initializes our monorepo and we make the necessary adjustments to get our base monorepo
 
-- Run: `npx create-nx-workspace`
+- Run `npx create-nx-workspace`:
+
   ```
     > npx create-nx-workspace
     Need to install the following packages:
@@ -68,6 +70,7 @@ This step initializes our monorepo and we make the necessary adjustments to get 
     📣 Stay up to date on X: https://x.com/nxdevtools
     💬 Discuss Nx on Discord: https://go.nx.dev/community
   ```
+
 - Replace: package-lock.json to yarn.lock by running `yarn install` and deleting the package-lock.json
 - Organize: Repo by moving files to reflect the following:
   ```
@@ -114,9 +117,3 @@ How to contribute...
 ## License
 License information...
 
-## Table of Contents
-1. **00. Initial Setup**
-   a. Test 
-   b. asd
-   c. asd
-2. **01. Apps Setup**
