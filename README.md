@@ -9,6 +9,8 @@
   - [Life Improvements](#01-life-improvements)
   - [Service Setup](#03-service-setup)
   - [Authentication](#04-authentication)
+  - [GPT 4 All](#05-gpt4all)
+  - [Friends Module](#06-friends)
 - [Features](#features)
 - [Contributing](#contributing)
 - [License](#license)
@@ -118,8 +120,8 @@ This step creates the authentication module and related endpoints such as sessio
 ### 05-gpt4all
 This step creates a module that encapsulates the GPT4All into a useable library in the demo. Note: Additional installation requirements for GPT4All listed [here](https://www.npmjs.com/package/gpt4all)
 
-## Contributing
-How to contribute...
+### 06-friends
+This is a simple friends module that allows you to do basic crud operations and an endpoint to chat about a friend. (Deepseek LLM)
 
 ## License
 License information...
