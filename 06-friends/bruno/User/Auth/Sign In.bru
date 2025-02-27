@@ -1,0 +1,36 @@
+meta {
+  name: Sign In
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{API_URL}}/api/user/auth/sign_in
+  body: json
+  auth: none
+}
+
+headers {
+  device_id: {{DEVICE_ID}}
+}
+
+body:json {
+  {
+    "username": "{{USERNAME}}",
+    "password": "{{PASSWORD}}"
+  }
+}
+
+script:post-response {
+  var jsonData = res.getBody();
+  
+  if (jsonData.status_code === 200) {
+    if (jsonData.data?.tokens?.access_token) {
+      bru.setEnvVar("ACCESS_TOKEN", jsonData.data.tokens.access_token)
+    }
+  
+    if(jsonData.data?.tokens?.refresh_token) {
+      bru.setEnvVar("REFRESH_TOKEN", jsonData.data.tokens.refresh_token)
+    }
+  }
+}

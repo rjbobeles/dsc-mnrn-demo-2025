@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach Debugger (Main API)",
+      "port": 4200,
+      "restart": true,
+      "request": "attach",
+      "type": "node",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}
