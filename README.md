@@ -115,6 +115,9 @@ This step sets up the services to have a workable directory. This includes insta
 ### 04-authentication
 This step creates the authentication module and related endpoints such as session management, password management, and authentication endpoints
 
+### 05-gpt4all
+This step creates a module that encapsulates the GPT4All into a useable library in the demo. Note: Additional installation requirements for GPT4All listed [here](https://www.npmjs.com/package/gpt4all)
+
 ## Contributing
 How to contribute...
 
