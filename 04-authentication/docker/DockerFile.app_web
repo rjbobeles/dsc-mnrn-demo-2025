@@ -1,0 +1,29 @@
+# NPM Package Installation
+FROM node:20-bookworm-slim AS deps
+
+WORKDIR /app
+
+COPY package.json /app/
+COPY yarn.lock /app/
+
+RUN yarn install --frozen-lockfile
+
+# Application Builder
+FROM node:20-bookworm-slim AS application-builder
+
+WORKDIR /app
+
+COPY --from=deps /app/node_modules /app/node_modules
+
+COPY . /app/
+
+RUN yarn nx run main:build --skip-nx-cache
+
+# Main Image
+FROM nginx:alpine
+
+COPY --from=application-builder /app/dist/app/web /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]
