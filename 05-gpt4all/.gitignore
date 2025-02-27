@@ -43,3 +43,6 @@ Thumbs.db
 
 # Environment
 .env
+
+# GPT4All
+*.gguf
