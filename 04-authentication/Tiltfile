@@ -26,7 +26,11 @@ local_resource(
   serve_env={
     "NAME": os.getenv('NAME', 'main-api'),
     "PRODUCTION_FEATURES": os.getenv('PRODUCTION_FEATURES', 'true'),
-    "ENVIRONMENT_NAME":  os.getenv('ENVIRONMENT_NAME', 'development')
+    "ENVIRONMENT_NAME":  os.getenv('ENVIRONMENT_NAME', 'development'),
+
+    # Database
+    "MONGO_CONNECTION_STRING": "mongodb://localhost:27017/dsc-demo?directConnection=true",
+    "MONGO_DATABASE_NAME": "dsc-demo",
   },
   labels=['services'],
   resource_deps=['mongodb', 'Yarn Install']

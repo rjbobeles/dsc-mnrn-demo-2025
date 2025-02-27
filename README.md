@@ -8,6 +8,7 @@
   - [Initial Setup](#00-initial-setup)
   - [Life Improvements](#01-life-improvements)
   - [Service Setup](#03-service-setup)
+  - [Authentication](#04-authentication)
 - [Features](#features)
 - [Contributing](#contributing)
 - [License](#license)

@@ -5,9 +5,10 @@ import { HealthCheckService, TerminusModule } from '@nestjs/terminus'
 import { Test, TestingModule } from '@nestjs/testing'
 import { FastifyRequest } from 'fastify'
 
-import generalConfig from '../../config/generalConfig'
 import { ServiceController } from './service.controller'
 import { ServiceService } from './service.service'
+
+import generalConfig from '../../config/generalConfig'
 
 jest.mock('../../config/generalConfig', () => ({
   __esModule: true,

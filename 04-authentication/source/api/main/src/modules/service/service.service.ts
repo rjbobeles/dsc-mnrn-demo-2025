@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { HealthCheckResult, HealthCheckService, HttpHealthIndicator, MicroserviceHealthIndicator } from '@nestjs/terminus'
+import { HealthCheckResult, HealthCheckService, HttpHealthIndicator, MongooseHealthIndicator } from '@nestjs/terminus'
 
 import { GetServiceInfoResponse } from './dto/get-service_info-response.dto'
 
@@ -10,7 +10,7 @@ export class ServiceService {
     private readonly configService: ConfigService,
     private readonly health: HealthCheckService,
     private readonly httpHealthIndicator: HttpHealthIndicator,
-    private readonly microserviceHealthIndicator: MicroserviceHealthIndicator,
+    private readonly mongooseHealthIndicator: MongooseHealthIndicator,
   ) {}
 
   public getInfo(): GetServiceInfoResponse {
@@ -26,6 +26,7 @@ export class ServiceService {
   public async getHealth(): Promise<HealthCheckResult> {
     return this.health.check([
       () => this.httpHealthIndicator.pingCheck('self-http', `http://0.0.0.0:${this.configService.get<number>('http_port')}/info`, { timeout: 2000 }),
+      () => this.mongooseHealthIndicator.pingCheck('mongodb', { timeout: 2000 }),
     ])
   }
 }
