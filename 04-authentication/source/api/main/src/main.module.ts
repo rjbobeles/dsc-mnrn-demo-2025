@@ -5,6 +5,7 @@ import { APP_FILTER } from '@nestjs/core'
 import { EventEmitterModule } from '@nestjs/event-emitter'
 import { MongooseModule } from '@nestjs/mongoose'
 
+import corsConfig from './config/corsConfig'
 import databaseConfig from './config/databaseConfig'
 import environmentSchema from './config/environmentSchema'
 import generalConfig from './config/generalConfig'
@@ -20,7 +21,7 @@ import { JwtAccessStrategy, JwtRefreshStrategy, LocalStrategy } from './passport
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [generalConfig, jwtConfig, databaseConfig],
+      load: [generalConfig, jwtConfig, databaseConfig, corsConfig],
       validationSchema: environmentSchema,
       isGlobal: true,
     }),
