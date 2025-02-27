@@ -45,6 +45,7 @@ async function bootstrap() {
     .addTag('User', 'User related endpoints')
     .addTag('User Authentication', 'Authentication related endpoints')
     .addTag('User Session', 'Session related endpoints')
+    .addTag('Friend', 'Friend related endpoints')
     .build()
 
   const document = SwaggerModule.createDocument(app, swaggerConfig)

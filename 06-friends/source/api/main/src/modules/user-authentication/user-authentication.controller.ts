@@ -81,6 +81,7 @@ export class UserAuthenticationController {
       password: body.password as string,
     })
 
+
     if (!user)
       throw new HttpException(
         ErrorCodes.ACCOUNT_CREATION_FAILED,
@@ -104,6 +105,8 @@ export class UserAuthenticationController {
         'Unable to create user session. Please try again or contact support.',
         HttpStatus.INTERNAL_SERVER_ERROR,
       )
+
+    delete user.password
 
     return res.send({
       status_code: 200,

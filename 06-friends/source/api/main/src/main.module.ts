@@ -14,6 +14,7 @@ import { ServiceModule } from './modules/service/service.module'
 import { UserAuthenticationModule } from './modules/user-authentication/user-authentication.module'
 import { UserSessionModule } from './modules/user-session/user-session.module'
 // eslint-disable-next-line import/order
+import { FriendModule } from './modules/friend/friend.module'
 import { UserModule } from './modules/user/user.module'
 import { JwtAccessStrategy, JwtRefreshStrategy, LocalStrategy } from './passport'
 
@@ -60,6 +61,7 @@ import { JwtAccessStrategy, JwtRefreshStrategy, LocalStrategy } from './passport
     UserAuthenticationModule,
     UserModule,
     UserSessionModule,
+    FriendModule,
   ],
   controllers: [],
   providers: [

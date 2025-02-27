@@ -6,6 +6,6 @@ import { Gpt4AllService } from './gpt4all.service'
   imports: [],
   providers: [Gpt4AllService],
   controllers: [],
-  exports: [],
+  exports: [Gpt4AllService],
 })
 export class Gpt4allModule {}

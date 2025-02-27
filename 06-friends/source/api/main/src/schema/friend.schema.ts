@@ -2,11 +2,11 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose'
 import { ApiProperty } from '@nestjs/swagger'
 import { HydratedDocument, Types } from 'mongoose'
 
-export const SCHEMA_NAME = 'users'
+export const SCHEMA_NAME = 'friend'
 
 @Schema({ collection: SCHEMA_NAME })
-export class User {
-  @ApiProperty({ type: String, example: '6380b5d09b8793f1a8d03f61', description: 'The ID of the user' })
+export class Friend {
+   @ApiProperty({ type: String, example: '6380b5d09b8793f1a8d03f62', description: 'The ID of the user' })
   @Prop({ type: Types.ObjectId, default: () => new Types.ObjectId() })
   _id?: Types.ObjectId
 
@@ -22,12 +22,9 @@ export class User {
   @Prop({ type: String, default: '', maxlength: 300, unique: true })
   email?: string
 
-  @Prop({ type: String, default: '', maxlength: 300 })
-  password?: string
-
-  @ApiProperty({ type: Boolean, example: false, description: 'The verification status of the user' })
-  @Prop({ type: Boolean, default: false })
-  email_verified?: boolean
+  @ApiProperty({ type: [String], example: ['Football', 'Basketball'], description: 'The email of the user' })
+  @Prop({ type: [String], default: [], maxlength: 300 })
+  hobbies?: string[]
 
   @ApiProperty({ example: '2024-05-25T14:20:50.010+00:00', description: 'The date when user was created' })
   @Prop({ type: Date, default: Date.now })
@@ -38,6 +35,6 @@ export class User {
   updated_at?: Date
 }
 
-export type UserDocument = HydratedDocument<User>
+export type FriendDocument = HydratedDocument<Friend>
 
-export const UserSchema = SchemaFactory.createForClass(User)
+export const FriendSchema = SchemaFactory.createForClass(Friend)

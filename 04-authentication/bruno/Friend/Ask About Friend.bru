@@ -1,0 +1,25 @@
+meta {
+  name: Ask About Friend
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{API_URL}}/api/friend/{{FRIEND_ID}}
+  body: json
+  auth: bearer
+}
+
+headers {
+  device_id: {{DEVICE_ID}}
+}
+
+auth:bearer {
+  token: {{ACCESS_TOKEN}}
+}
+
+body:json {
+  {
+    "question": "It's christmas soon, can you tell me what gift i can send my friend? Check my friend's hobbies."
+  }
+}
