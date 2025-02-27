@@ -120,7 +120,7 @@ export class FriendController {
 
     return res.send({
       status_code: res.statusCode,
-      message: 'Successfully created friend!',
+      message: 'Successfully generated chat about friends!',
       data: gptResponse.choices[0].message.content
     })
   }

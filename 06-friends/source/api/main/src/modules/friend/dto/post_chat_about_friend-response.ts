@@ -5,7 +5,7 @@ export class PostChatAboutFriendResponse {
     status_code: number
 
     @ApiProperty({
-      example: 'Successfully retrieved friends!',
+      example: 'Successfully generated chat about friends!',
       description: 'The message of the API response',
     })
     message: string
