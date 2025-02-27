@@ -1,20 +1,56 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
-import { Logger } from '@nestjs/common'
+import { FastifyCorsOptions } from '@fastify/cors'
+import { Logger, RequestMethod } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
+import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
-import { AppModule } from './app/app.module'
+import { MainModule } from './main.module'
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule)
-  const globalPrefix = 'api'
-  app.setGlobalPrefix(globalPrefix)
-  const port = process.env.PORT || 4000
-  await app.listen(port)
-  Logger.log(`🚀 Application is running on: http://localhost:${port}/${globalPrefix}`)
+  const app = await NestFactory.create<NestFastifyApplication>(MainModule, new FastifyAdapter())
+  const config = app.get(ConfigService)
+
+  app.enableCors(config.get<FastifyCorsOptions>('cors'))
+  app.setGlobalPrefix(config.get<string>('api_prefix') || 'api', {
+    exclude: [
+      { path: 'info', method: RequestMethod.GET },
+      { path: 'health', method: RequestMethod.GET },
+    ],
+  })
+
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('Main API')
+    .setDescription('The main API documentation')
+    .setVersion('1.0')
+    .addBearerAuth(
+      {
+        type: 'apiKey',
+        name: 'authorization',
+        in: 'header',
+        description: 'Your token to access this API',
+      },
+      'ACCESS_TOKEN',
+    )
+    .addBearerAuth(
+      {
+        type: 'apiKey',
+        name: 'authorization',
+        in: 'header',
+        description: 'Your token to access this API',
+      },
+      'REFRESH_TOKEN',
+    )
+    .addTag('Service', 'Service related endpoint')
+    .build()
+
+  const document = SwaggerModule.createDocument(app, swaggerConfig)
+  SwaggerModule.setup('docs', app, document)
+
+  await app.listen(config.get<number>('http_port') || 4000, '0.0.0.0')
+
+  Logger.log(`🚀 Application is running on: http://0.0.0.0:${config.get<number>('http_port')}`, 'Info')
+  Logger.log('✅ /docs, /health, /info | 🕹️ API Prefix: /api', 'Info')
 }
 
 bootstrap()

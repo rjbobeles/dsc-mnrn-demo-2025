@@ -19,13 +19,15 @@ local_resource(
 )
 
 # Run Services
-environment = {}
-
 local_resource(
   name="main",
   serve_cmd="yarn nx run main:serve --configuration=development",
   allow_parallel=True,
-  serve_env={},
+  serve_env={
+    "NAME": os.getenv('NAME', 'main-api'),
+    "PRODUCTION_FEATURES": os.getenv('PRODUCTION_FEATURES', 'true'),
+    "ENVIRONMENT_NAME":  os.getenv('ENVIRONMENT_NAME', 'development')
+  },
   labels=['services'],
   resource_deps=['mongodb', 'Yarn Install']
 )

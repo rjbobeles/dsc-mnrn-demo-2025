@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dsc-demo/utils": ["source/lib/utils/src/index.ts"]
+      "@dsc-demo/utils": ["source/lib/utils/src/index.ts"],
+      "@dsc-demo/utils/*": ["source/lib/utils/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

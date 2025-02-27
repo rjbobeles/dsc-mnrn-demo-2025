@@ -12,6 +12,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "prettier.requireConfig": true,
   "better-comments.multilineComments": true,
-  "cSpell.words": [],
+  "cSpell.words": ["getenv"],
   "jestrunner.codeLens": ["run", "debug", "coverage", "watch"]
 }
